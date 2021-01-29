@@ -67,9 +67,9 @@ export const apiConstants = {
 
     JWPLAYER_KEY: "M2NCefPoiiKsaVB8nTttvMBxfb1J3Xl7PDXSaw==",
 
-    settingsUrl: "http://adminview.streamhash.com/userApi/get_settings_json",
+    settingsUrl: "https://admin-watch.antidotefilms.com.au/userApi/get_settings_json",
 
-    homeSettingsUrl: "http://adminview.streamhash.com/userApi/get_home_settings_json",
+    homeSettingsUrl: "https://admin-watch.antidotefilms.com.au/userApi/get_home_settings_json",
     
-    socketUrl: "http://adminview.streamhash.com:3003/"
+    socketUrl: "https://admin-watch.antidotefilms.com.au:3003/"
 };

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 import api from "../../Environment";
 
@@ -7,6 +8,7 @@ import Slider from "../SliderView/MainSlider";
 import HomePageBanner from "./homePageBanner";
 // import ContentLoader from "../Static/contentLoader";
 import HomeLoader from "../Loader/HomeLoader";
+import GridView from "./MovieGridView/GridView";
 
 import {
   // setTranslations,
@@ -30,11 +32,13 @@ class Home extends Component {
     };
     api
       .postMethod("home_first_section", inputData)
+      // .then((response) => response.json())
       .then((response) => {
+
         if (response.data.success === true) {
           let maindata = response.data.data;
           let banner = response.data.banner;
-
+          console.log(maindata, "maindata==================");
           this.setState({
             loading: false,
             maindata: maindata,
@@ -45,7 +49,9 @@ class Home extends Component {
           this.setState({ errorHandle });
         }
       })
-      .catch(function(error) {});
+      .catch(function(error) {
+        console.log(error);
+      });
   }
 
   renderVideoList = (maindata, index) => {
@@ -64,7 +70,8 @@ class Home extends Component {
             }}
           >
             <h3 className="">
-              {maindata.title}
+              {/* {maindata.title} */}
+              {/* All Movies */}
               <i className="fas fa-angle-right ml-2" />
             </h3>
           </Link>
@@ -76,6 +83,10 @@ class Home extends Component {
               </Slider.Item>
             ))}
           </Slider>
+          {/* {maindata.data.map((movie) => (
+              
+               <GridView movie={movie} key={movie.admin_video_id}/> 
+             ))} */}
         </div>
       </React.Fragment>
     );

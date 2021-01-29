@@ -25,7 +25,7 @@ $(document).ready(function () {
     });
 
     var header_height = $('#header').outerHeight();
-    console.log("test", header_height);
+    console.log("dssss", header_height);
     $('.header-height').height(header_height);
     $('.landing-header-height').height(header_height);
 

@@ -11,6 +11,7 @@ import Footer from "../Layouts/SubLayout/Footer";
 import api from "../../Environment";
 import renderHTML from "react-render-html";
 import ImageLoader from "../Helper/ImageLoader";
+import axios from "axios";
 
 class LatestLandingPage extends Component {
   state = {
@@ -27,6 +28,7 @@ class LatestLandingPage extends Component {
   async fetchConfig() {
     const response = await fetch(apiConstants.homeSettingsUrl);
     const homeResonse = await response.json();
+    console.log(homeResonse, "this is homepage");
 
     this.setState({
       loading: false,
@@ -36,7 +38,10 @@ class LatestLandingPage extends Component {
 
   async getFaqs() {
     api.getMethod("faqs/list").then((response) => {
+      
+      console.log(response, "this is faq");
       if (response.data.success) {
+
         this.setState({
           faqData: response.data.data,
           loadingData: false,
@@ -47,6 +52,7 @@ class LatestLandingPage extends Component {
   }
   render() {
     const { loading, HomeSettings, loadingData, faqData } = this.state;
+    console.log(HomeSettings, "this is homepage");
 
     if (
       localStorage.getItem("userId") &&

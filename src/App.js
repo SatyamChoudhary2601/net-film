@@ -32,6 +32,8 @@ import VideoComponent from "./components/User/Video/Video";
 
 // User Layout
 import Home from "../src/components/User/Home";
+import Ecommerce from "../src/components/ECOMMERCE/Ecommerce";
+
 import AccountComponent from "../src/components/User/Account/Account";
 import EditAccountComponent from "../src/components/User/Account/EditAccount";
 import ChangePasswordComponent from "../src/components/User/Account/ChangePassword";
@@ -283,6 +285,7 @@ class App extends Component {
                   screenProps={this.eventEmitter}
                 />
                 <Route path={"/logout"} component={Logout} />
+                <Route path={"/ecom-store"} component={Ecommerce}/>
                 <AppRoute
                   path={"/forgot-password"}
                   component={ForgotPasswordComponent}

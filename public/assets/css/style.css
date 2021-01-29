@@ -2236,6 +2236,7 @@ a:active, a:focus, .slick-slide:focus, .slick-slide:active{
 .main-slidersec:hover .home-slider .slick-next, .main-slidersec:hover .home-slider .slick-prev{
     opacity: 1;
 } 
+
 .home-slider .slick-prev:before{
     height: 30px;
     width: 30px;

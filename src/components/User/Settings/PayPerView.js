@@ -326,31 +326,32 @@ class PayPerView extends Helper {
                           <div className="display-inline">
                             <div className="icon-left">
                               <h5 className="billing-head">
-                                <i className="fas fa-user" />
+                                <i className="fas fa-info" />
                               </h5>
                             </div>
                             <div className="content-right">
                               <h5 className="billing-head mb-3">
-                                {t("user_type")}
+                                {t("Description")}
                               </h5>
-                              <p className="m-0">
-                                {videoDetailsFirst.type_of_user == 1
-                                  ? "Normal User"
-                                  : videoDetailsFirst.type_of_user == 2
-                                  ? "Paid User"
-                                  : "Both User"}
-                              </p>
+                              <div>
+                                <p
+                                  className="m-0"
+                                  style={{ whiteSpace:'inherit', textAlign:'justify' }}
+                                >
+                                  {videoDetailsFirst.description}
+                                </p>
+                              </div>
                             </div>
                           </div>
                           <div className="clearfix" />
-                          <p className="grey-line" />
-                          <div className="display-inline">
-                            <div className="icon-left">
+                          {/* <p className="grey-line" /> */}
+                          {/* <div className="display-inline"> */}
+                          {/* <div className="icon-left">
                               <h5 className="billing-head">
                                 <i className="far fa-hand-point-up" />
                               </h5>
-                            </div>
-                            <div className="content-right">
+                            </div> */}
+                          {/* <div className="content-right">
                               <h5 className="billing-head mb-3">
                                 {t("subscription_type")}
                               </h5>
@@ -359,8 +360,8 @@ class PayPerView extends Helper {
                                   ? "one type payment"
                                   : "recurring Payment"}
                               </p>
-                            </div>
-                          </div>
+                            </div> */}
+                          {/* </div> */}
                           <div className="clearfix" />
                         </div>
                       </div>
@@ -373,10 +374,10 @@ class PayPerView extends Helper {
                         </h4>
                         <p className="grey-line" />
                         <div className="">
-                          <h5 className="">{t("amount")}</h5>
+                          {/* <h5 className="">{t("amount")}</h5>
                           <p className="grey-clr pay-perview-text">
                             {t("pay_for_video_text")}
-                          </p>
+                          </p> */}
                         </div>
                         {/* <!-- table1 --> */}
                         <div className="table-responsive">

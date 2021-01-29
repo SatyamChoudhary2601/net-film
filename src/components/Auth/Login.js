@@ -36,6 +36,7 @@ class LoginCommponent extends Helper {
     api
       .postMethod("v4/login", this.state.data)
       .then((response) => {
+        console.log(response,'response')
         if (response.data.success) {
           localStorage.setItem("userId", response.data.data.user_id);
           localStorage.setItem("accessToken", response.data.data.token);

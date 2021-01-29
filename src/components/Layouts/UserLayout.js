@@ -36,6 +36,7 @@ class AuthLayout extends Component {
       <div className="wrapper">
         <div className="main-sec-content">
         <UserHeader />
+        {/* <h1>hello </h1> */}
         {React.cloneElement(this.props.children, {
           eventEmitter: this.eventEmitter,
           data: isAuthenticated
