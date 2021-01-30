@@ -3,6 +3,7 @@ import IconArrowDown from "../Icons/IconArrowDown";
 import "./ShowDetailsButton.scss";
 
 const ShowDetailsButton = ({ onClick }) => (
+    
     <button onClick={onClick} className="show-details-button">
         <div className="text-center thumbarrow-sec">
             <img

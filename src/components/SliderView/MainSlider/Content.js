@@ -10,6 +10,7 @@ import VideoDetails from "../../User/Video/videoDetails";
 import ContentLoader from "../../Static/contentLoader";
 import classNames from "classnames";
 import { t } from "react-multi-lang";
+import { Modal } from "react-responsive-modal";
 
 const $ = window.$;
 // const DATE_OPTIONS = {
@@ -27,7 +28,7 @@ class Content extends Helper {
     loadingSuggestion: true,
     nav: "overview",
     inputData: {
-      admin_video_id: this.props.movie.admin_video_id,
+      admin_video_id: this.props.movie ? this.props.movie.admin_video_id : null,
       skip: 0,
     },
   };
@@ -86,6 +87,7 @@ class Content extends Helper {
 
   render() {
     const movie = { ...this.props.movie };
+    console.log(this.props, "this is movie");
 
     const {
       loadingFirst,
@@ -96,19 +98,20 @@ class Content extends Helper {
       suggestion,
     } = this.state;
     return (
-      <div className="content">
-        <div className="content__background">
-          <div className="content__background__shadow" />
-          <div
-            className="content__background__image"
-            style={{
-              backgroundImage: `url(${movie.default_image})`,
-            }}
-          />
-        </div>
-        <div className="content__area">
-          <div className="content__area__container">
-            {/*
+      // <Modal open={this.props.onOpen} onClose={this.props.onClose} >
+        <div className="content">
+          <div className="content__background">
+            <div className="content__background__shadow" />
+            <div
+              className="content__background__image"
+              style={{
+                backgroundImage: `url(${movie.default_image})`,
+              }}
+            />
+          </div>
+          <div className="content__area">
+            <div className="content__area__container">
+              {/*
               <div className="content__title">{movie.title}</div>
               <div className="content__description">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
@@ -117,156 +120,159 @@ class Content extends Helper {
                 quis quam congue, non fringilla orci placerat. Praesent sollicitudin
               </div> 
             */}
-          </div>
-          <div className="slider-content-tabsec">
-            <ul className="nav nav-pills" role="tablist">
-              <li className="nav-item">
-                <a
-                  className={classNames("nav-link", {
-                    active: this.state.nav == "overview",
-                  })}
-                  onClick={(event) => this.navToggle("overview", event)}
-                  href="#"
-                >
-                  {t("overview")}
-                </a>
-              </li>
-              {loadingFirst ? (
-                ""
-              ) : videoDetailsFirst.is_series ? (
+            </div>
+            <div className="slider-content-tabsec">
+              <ul className="nav nav-pills" role="tablist">
                 <li className="nav-item">
                   <a
                     className={classNames("nav-link", {
-                      active: this.state.nav == "episodes",
+                      active: this.state.nav == "overview",
                     })}
-                    onClick={(event) => this.navToggle("episodes", event)}
+                    onClick={(event) => this.navToggle("overview", event)}
                     href="#"
                   >
-                    {t("episodes")}
+                    {t("overview")}
                   </a>
                 </li>
-              ) : (
-                ""
-              )}
+                {loadingFirst ? (
+                  ""
+                ) : videoDetailsFirst.is_series ? (
+                  <li className="nav-item">
+                    <a
+                      className={classNames("nav-link", {
+                        active: this.state.nav == "episodes",
+                      })}
+                      onClick={(event) => this.navToggle("episodes", event)}
+                      href="#"
+                    >
+                      {t("episodes")}
+                    </a>
+                  </li>
+                ) : (
+                  ""
+                )}
 
-              {loadingSecond
-                ? ""
-                : videoDetailsSecond.trailer_section.length && (
-                    <li className="nav-item">
-                      <a
-                        className={classNames("nav-link", {
-                          active: this.state.nav == "trailers",
-                        })}
-                        onClick={(event) => this.navToggle("trailers", event)}
-                        href="#"
-                      >
-                        {t("trailer_and_more")}
-                      </a>
-                    </li>
-                  )}
+                {loadingSecond
+                  ? ""
+                  : videoDetailsSecond.trailer_section.length && (
+                      <li className="nav-item">
+                        <a
+                          className={classNames("nav-link", {
+                            active: this.state.nav == "trailers",
+                          })}
+                          onClick={(event) => this.navToggle("trailers", event)}
+                          href="#"
+                        >
+                          {t("trailer_and_more")}
+                        </a>
+                      </li>
+                    )}
 
-              <li className="nav-item">
-                <a
-                  className={classNames("nav-link", {
-                    active: this.state.nav == "related",
-                  })}
-                  onClick={(event) => this.navToggle("related", event)}
-                  href="#"
-                >
-                  {t("more_like_this")}
-                </a>
-              </li>
-              <li className="nav-item">
-                <a
-                  className={classNames("nav-link", {
-                    active: this.state.nav == "details",
-                  })}
-                  onClick={(event) => this.navToggle("details", event)}
-                  href="#"
-                >
-                  {t("details")}
-                </a>
-              </li>
-            </ul>
-          </div>
+                <li className="nav-item">
+                  <a
+                    className={classNames("nav-link", {
+                      active: this.state.nav == "related",
+                    })}
+                    onClick={(event) => this.navToggle("related", event)}
+                    href="#"
+                  >
+                    {t("more_like_this")}
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a
+                    className={classNames("nav-link", {
+                      active: this.state.nav == "details",
+                    })}
+                    onClick={(event) => this.navToggle("details", event)}
+                    href="#"
+                  >
+                    {t("details")}
+                  </a>
+                </li>
+              </ul>
+            </div>
 
-          <div className="slider-content-tabcontent">
-            <div className="tab-content">
-              {loadingFirst ? (
-                <ContentLoader />
-              ) : (
-                <div
-                  className={classNames("tab-pane", {
-                    active: this.state.nav == "overview",
-                    fade: this.state.nav != "overview",
-                  })}
-                >
-                  <VideoOverView videoDetailsFirst={videoDetailsFirst} />
-                </div>
-              )}
+            <div className="slider-content-tabcontent">
+              <div className="tab-content">
+                {loadingFirst ? (
+                  <ContentLoader />
+                ) : (
+                  <div
+                    className={classNames("tab-pane", {
+                      active: this.state.nav == "overview",
+                      fade: this.state.nav != "overview",
+                    })}
+                  >
+                    <VideoOverView videoDetailsFirst={videoDetailsFirst} />
+                  </div>
+                )}
 
-              {loadingSecond ? (
-                ""
-              ) : (
-                <div
-                  className={classNames("tab-pane", {
-                    active: this.state.nav == "episodes",
-                    fade: this.state.nav != "episodes",
-                  })}
-                >
-                  <VideoEpisode
-                    genreVideos={videoDetailsSecond.genre_videos}
-                    genres={videoDetailsSecond.genres}
-                  />
-                </div>
-              )}
-
-              {loadingSecond ? (
-                ""
-              ) : (
-                <div
-                  className={classNames("tab-pane", {
-                    active: this.state.nav == "trailers",
-                    fade: this.state.nav != "trailers",
-                  })}
-                >
-                  <VideoTrailer trailer={videoDetailsSecond.trailer_section} />
-                </div>
-              )}
-
-              <div
-                className={classNames("tab-pane", {
-                  active: this.state.nav == "related",
-                  fade: this.state.nav != "related",
-                })}
-              >
-                {loadingSuggestion ? (
+                {loadingSecond ? (
                   ""
                 ) : (
-                  <VideoMoreLikeThis suggestion={suggestion} />
+                  <div
+                    className={classNames("tab-pane", {
+                      active: this.state.nav == "episodes",
+                      fade: this.state.nav != "episodes",
+                    })}
+                  >
+                    <VideoEpisode
+                      genreVideos={videoDetailsSecond.genre_videos}
+                      genres={videoDetailsSecond.genres}
+                    />
+                  </div>
                 )}
-              </div>
 
-              {loadingFirst ? (
-                ""
-              ) : (
+                {loadingSecond ? (
+                  ""
+                ) : (
+                  <div
+                    className={classNames("tab-pane", {
+                      active: this.state.nav == "trailers",
+                      fade: this.state.nav != "trailers",
+                    })}
+                  >
+                    <VideoTrailer
+                      trailer={videoDetailsSecond.trailer_section}
+                    />
+                  </div>
+                )}
+
                 <div
                   className={classNames("tab-pane", {
-                    active: this.state.nav == "details",
-                    fade: this.state.nav != "details",
+                    active: this.state.nav == "related",
+                    fade: this.state.nav != "related",
                   })}
                 >
-                  <VideoDetails videoDetailsFirst={videoDetailsFirst} />
+                  {loadingSuggestion ? (
+                    ""
+                  ) : (
+                    <VideoMoreLikeThis suggestion={suggestion} />
+                  )}
                 </div>
-              )}
-            </div>
-          </div>
 
-          <button className="content__close" onClick={this.props.onClose}>
-            <IconCross />
-          </button>
+                {loadingFirst ? (
+                  ""
+                ) : (
+                  <div
+                    className={classNames("tab-pane", {
+                      active: this.state.nav == "details",
+                      fade: this.state.nav != "details",
+                    })}
+                  >
+                    <VideoDetails videoDetailsFirst={videoDetailsFirst} />
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <button className="content__close" onClick={this.props.onClose}>
+              <IconCross />
+            </button>
+          </div>
         </div>
-      </div>
+      // {/* </Modal> */}
     );
   }
 }

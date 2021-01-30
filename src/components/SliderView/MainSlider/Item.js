@@ -8,23 +8,24 @@ import "./Item.scss";
 import Helper from "../../Helper/helper";
 import "react-responsive-modal/styles.css";
 import { Modal } from "react-responsive-modal";
+import Content from "./Content";
 const DATE_OPTIONS = {
   year: "numeric",
   month: "short",
 };
 const customStyles = {
-  content : {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)',
-    width                 : '70%'
+  content: {
+    top: "50%",
+    left: "auto",
+    right: "auto",
+    bottom: "50%",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    width: "70%",
   },
   overlay: {
-    zIndex: 200
-  }
+    zIndex: 9999,
+  },
 };
 
 class Item extends Helper {
@@ -56,13 +57,12 @@ class Item extends Helper {
     this.setState({ playButtonClicked: true });
   };
   openModal = () => {
-    this.setState({ isOpen: true });
+    this.setState({ isOpen: !this.state.isOpen });
   };
   closeHandler = () => {
     this.setState({ isOpen: false });
   };
   render() {
-    console.log(this.state.isOpen, "value of open");
     const { movie } = this.props;
 
     if (this.state.playButtonClicked) {
@@ -127,13 +127,15 @@ class Item extends Helper {
                   )}
                 </h5>
                 <p className="thumb-desc">{movie.description} </p>
-                {/* <button className="btn btn-success" onClick={this.openModal}>Trigger</button> */}
+                {/* <button className="btn btn-success" onClick={() => onSelectSlide(movie)} onOpen={this.openModal} onClose={this.onClose}>
+                  Trigger
+                </button>
                 <Modal
                   open={isActive}
                   onClose={this.closeHandler}
                   style={customStyles}
-                >
-                  <p>
+                > */}
+                  {/* <p>
                     hellohellohellohellohellohellohellohellohellohellohellohelloh
                     ellohellohellohellohellohellohellohellohellohellohellohellohellohello
                   </p>
@@ -144,9 +146,9 @@ class Item extends Helper {
                   <p>hello</p>
                   <p>hello</p>
                   <p>hello</p>
-
-                </Modal>
-                  <ShowDetailsButton onClick={() => onSelectSlide(movie)} />
+                  {onSelectSlide ? <Content /> : null} */}
+                {/* </Modal> */}
+                <ShowDetailsButton onClick={() => onSelectSlide(movie)} />
               </div>
               {isActive && <Mark />}
             </div>

@@ -72,7 +72,7 @@ class Home extends Component {
             <h3 className="">
               {/* {maindata.title} */}
               {/* All Movies */}
-              <i className="fas fa-angle-right ml-2" />
+              {/* <i className="fas fa-angle-right ml-2" /> */}
             </h3>
           </Link>
 
