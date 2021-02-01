@@ -1188,7 +1188,7 @@ input:checked + .switch-slider:before {
 }
 .note{
     color: #666;
-    font-size: 1.14em
+    font-size: 1.14em;
     line-height:1.375;
 }
 .black-bg{
@@ -2208,6 +2208,10 @@ a:active, a:focus, .slick-slide:focus, .slick-slide:active{
     vertical-align: -12%;
     opacity: 0;
     transition: .2s all linear;
+}
+.checkbox_portrait{
+    text-align: end;
+    margin-right: 10px;
 }
 .main-slidersec:hover h3 svg{
     opacity: 1;

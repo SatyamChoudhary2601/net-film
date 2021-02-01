@@ -503,6 +503,9 @@ class UserHeader extends Helper {
                     {t("manage_profile")}
                   </Link>
                 </div>
+                <div className="dropdown-item">
+                  {t("portrait_mode")}
+                </div>
                 <p className="profile-drop-line" />
                 <Link className="dropdown-item" to="/account">
                   {t("account")}

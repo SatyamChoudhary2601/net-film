@@ -17,6 +17,7 @@ import {
 } from "react-multi-lang";
 // import en from "../translation/en.json";
 // import pt from "../translation/pt.json";
+import Switch from "react-switch";
 
 class Home extends Component {
   state = {
@@ -24,6 +25,7 @@ class Home extends Component {
     errorHandle: 0,
     loading: true,
     banner: null,
+    checked: false,
   };
 
   componentDidMount() {
@@ -34,7 +36,6 @@ class Home extends Component {
       .postMethod("home_first_section", inputData)
       // .then((response) => response.json())
       .then((response) => {
-
         if (response.data.success === true) {
           let maindata = response.data.data;
           let banner = response.data.banner;
@@ -53,6 +54,12 @@ class Home extends Component {
         console.log(error);
       });
   }
+
+  onChangeHandler = () => {
+    this.setState({
+      checked: !this.state.checked,
+    });
+  };
 
   renderVideoList = (maindata, index) => {
     return (
@@ -76,9 +83,16 @@ class Home extends Component {
             </h3>
           </Link>
 
+          {/* <div><h4>Enable Portrait</h4>
+          <input type="checkbox"/>
+          </div> */}
           <Slider>
             {maindata.data.map((movie) => (
-              <Slider.Item movie={movie} key={movie.admin_video_id}>
+              <Slider.Item
+                movie={movie}
+                key={movie.admin_video_id}
+                checked={this.state.checked}
+              >
                 item1
               </Slider.Item>
             ))}
@@ -97,11 +111,27 @@ class Home extends Component {
 
     const { loading, maindata, banner } = this.state;
 
+    console.log(this.state.checked, "this is checked");
+
     return (
       <div className="main-sec-content">
         {loading ? <HomeLoader /> : <HomePageBanner banner={banner} />}
         <div className="main p-40 home-slider-top">
           {/* {renderMyList} */}
+          <div className="checkbox_portrait">
+            <label>
+              <span
+                style={{ position: "absolute", top: "18px", right: "70px" }}
+              >
+                Portrait Mode
+              </span>
+              <Switch
+                type="checkbox"
+                checked={this.state.checked}
+                onChange={this.onChangeHandler}
+              />
+            </label>
+          </div>
 
           {loading
             ? ""

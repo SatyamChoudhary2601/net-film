@@ -33,6 +33,7 @@
     "react-slick": "0.21.0",
     "react-social-login": "^3.4.2",
     "react-stripe-elements": "^2.0.3",
+    "react-switch": "^6.0.0",
     "react-timeout": "^1.1.2",
     "react-toast-notifications": "^1.4.0",
     "redux": "^4.0.1",

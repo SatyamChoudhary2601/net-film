@@ -89,6 +89,7 @@
   "notification": "Notification",
   "see_all": "See All",
   "payment_history": "Payment History",
+  "portrait_mode":"Portrait Mode",
   "switch_profiles": "Switch Profiles",
   "payment_failure": "Payment Failure!..",
   "payment_failure_text": "your payment was not received! Please try again.",
